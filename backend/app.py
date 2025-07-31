@@ -1,6 +1,6 @@
 from flask import Flask,request,jsonify
 from flask_cors import CORS
-from models import db,Product
+from models import db,Product,Department
 app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
@@ -43,6 +43,50 @@ def get_product_by_id(product_id):
                 "brand":product.brand,
                 "category":product.category,
                 "department":product.department
+    }),200
+def get_departments():
+    departments=Department.query.all()
+    return jsonify({
+        "departments":[kwargs=={
+            "id":d.id,
+            "name":d.name,
+            "product_count":len(d.products)
+
+        }
+        for d in departments]
+    }),200
+@app.route('/departments/,<int:dept_id>',
+           methods=['GET'])
+def get_department_by_id(dept_id):
+    department=Department.query.get(dept_id)
+    if not department:
+        return jsonify({"error":"department not found"}),404
+
+    return jsonify({
+                 "id":department.id,
+                "name":department.name,
+                "product_count":len(department.products)
+               
+                
+    }),200
+@app.route('/departments/,<int:dept_id>/products',
+           methods=['GET'])
+def get_products_by_department(dept_id):
+    department=Department.query.get(dept_id)
+    if not department:
+        return jsonify({"error":"department not found"}),404
+    products=department.products
+    return jsonify({
+        "department":department.name,
+        "products":[{
+                 "id":p.id,
+                "name":p.name,
+                "brand":p.brand,
+                "cost":p.cost,
+                "retail_price":p.retail_price
+    }for p in products]
+               
+                
     }),200
 if __name__=='__main__':
     with app.app_context():
