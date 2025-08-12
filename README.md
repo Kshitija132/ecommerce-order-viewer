@@ -160,4 +160,3 @@ Feel free to fork, clone, and extend. If you spot bugs or want to improve someth
 
 ---
 
-Let me know if you want to add deployment instructions (e.g., Render + Netlify), or set up CI/CD.
