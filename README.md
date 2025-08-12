@@ -1,6 +1,6 @@
 
 
-# 🛍️ MERN Stack Product Catalog App
+# 🛍️ MERN Stack Ecommerce App
 
 Hi, I’m Kshitija 👋  
 This is a full-stack product catalog application built with the MERN stack (MongoDB, Express, React, Node.js). It includes a backend utility for importing and verifying product data from CSV, and a frontend for browsing, filtering, and searching products.
@@ -161,7 +161,3 @@ Feel free to fork, clone, and extend. If you spot bugs or want to improve someth
 ---
 
 Let me know if you want to add deployment instructions (e.g., Render + Netlify), or set up CI/CD.
-
-<img width="448" height="258" alt="Screenshot 2025-08-12 124822" src="https://github.com/user-attachments/assets/359595e0-6d10-4cc3-9e19-61e5f99cee29" />
-<img width="683" height="427" alt="Screenshot 2025-08-12 124723" src="https://github.com/user-attachments/assets/95f0c1d1-e631-4adc-b147-431898fa7284" />
-
