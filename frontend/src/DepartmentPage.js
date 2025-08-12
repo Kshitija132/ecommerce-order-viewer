@@ -20,4 +20,4 @@ function DepartmentPage(){
     )
 }
 
-export deafult DepartmentPage;
+export defult DepartmentPage;

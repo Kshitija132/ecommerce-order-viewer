@@ -1,58 +1,20 @@
+// models/Product.js
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-  id: {
-    type: Number,
-    required: true,
-    unique: true
-  },
-  cost: {
-    type: Number,
-    required: true
-  },
-  category: {
-    type: String,
-    required: true,
-    index: true
-  },
-  name: {
-    type: String,
-    required: true
-  },
-  brand: {
-    type: String,
-    required: true,
-    index: true
-  },
-  retail_price: {
-    type: Number,
-    required: true
-  },
-  department_id: {
-    type: Number,
-    required: true,
-    index: true,
-    ref: 'Department' // Reference to Department 
-  },
-  sku: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  distribution_center_id: {
-    type: Number,
-    required: true
-  }
-}, {
-  timestamps: true,
-  collection: 'products'
-});
+  id: { type: Number, unique: true, required: true },
+  cost: Number,
+  category: { type: String, index: true },
+  name: String,
+  brand: { type: String, index: true },
+  retail_price: Number,
+  department: { type: String, index: true },
+  sku: { type: String, unique: true },
+  distribution_center_id: Number
+}, { timestamps: true });
 
-// Create indexes for better query performance
-productSchema.index({ category: 1, department_id: 1 });
+// Compound indexes
+productSchema.index({ category: 1, department: 1 });
 productSchema.index({ brand: 1, category: 1 });
-productSchema.index({ retail_price: 1 });
 
-const Product = mongoose.model('Product', productSchema);
-
-module.exports = Product; 
+module.exports = mongoose.model('Product', productSchema);
